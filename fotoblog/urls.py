@@ -12,10 +12,12 @@ Class-based views
 Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
+    path('tinymce/', include('tinymce.urls')),
 """
 from django.contrib import admin
 from django.urls import path
 from django.conf import settings
+from django.conf.urls import include
 from django.conf.urls.static import static
 import blog.views
 import authentication.views
@@ -28,7 +30,9 @@ urlpatterns = [
     path('signup/', authentication.views.signup_page, name='signup'),
     path('photo/upload/', blog.views.photo_upload, name='photo_upload'),
     path('blog/create/', blog.views.blog_and_photo_upload, name='blog_create'),
-    path('blog/<int:blog_id>', blog.views.view_blog, name='view_blog')
+    path('blog/<int:blog_id>', blog.views.view_blog, name='view_blog'),
+    path('tinymce/', include('tinymce.urls')),
+    path('blog/<int:blog_id>/edit', blog.views.edit_blog, name='edit_blog')
 ]
 if settings.DEBUG:
     urlpatterns += static(
