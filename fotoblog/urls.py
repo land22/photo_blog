@@ -26,7 +26,8 @@ urlpatterns = [
     path('logout/', authentication.views.logout_user, name='logout'),
     path('home/', blog.views.home, name='home'),
     path('signup/', authentication.views.signup_page, name='signup'),
-    path('photo/upload/', blog.views.photo_upload, name='photo_upload')
+    path('photo/upload/', blog.views.photo_upload, name='photo_upload'),
+    path('blog/create/', blog.views.blog_and_photo_upload, name='blog_create'),
 ]
 if settings.DEBUG:
     urlpatterns += static(
