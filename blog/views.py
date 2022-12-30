@@ -1,11 +1,13 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
+
 from . import models, forms
 
 @login_required
 def home(request):
     photos = models.Photo.objects.all()
-    return render(request,'blog/home.html', context={'photos':photos})
+    blogs = models.Blog.objects.all()
+    return render(request,'blog/home.html', context={'photos':photos, 'blogs': blogs})
 
 @login_required
 def photo_upload(request):
@@ -18,6 +20,11 @@ def photo_upload(request):
         photo.save()
         return redirect('home')
     return render(request,'blog/photo_upload.html', context={'form':form})
+
+@login_required
+def view_blog(request, blog_id):
+    blog = get_object_or_404(models.Blog, id=blog_id)
+    return render(request, 'blog/view_blog.html',{'blog':blog})
 
 @login_required
 def blog_and_photo_upload(request):
