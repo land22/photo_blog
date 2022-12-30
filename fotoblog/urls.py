@@ -32,7 +32,8 @@ urlpatterns = [
     path('blog/create/', blog.views.blog_and_photo_upload, name='blog_create'),
     path('blog/<int:blog_id>', blog.views.view_blog, name='view_blog'),
     path('tinymce/', include('tinymce.urls')),
-    path('blog/<int:blog_id>/edit', blog.views.edit_blog, name='edit_blog')
+    path('blog/<int:blog_id>/edit', blog.views.edit_blog, name='edit_blog'),
+    path('photo/upload-multiple/', blog.views.creation_multiple_photos, name='create_multiple_photos'),
 ]
 if settings.DEBUG:
     urlpatterns += static(
