@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required, permission_required
 from django.forms import formset_factory
 
 from . import models, forms
@@ -25,6 +25,7 @@ def creation_multiple_photos(request):
     return render(request, 'blog/create_multiple_photos.html', {'formset':formset})
 
 @login_required
+@permission_required('blog.add_photo', raise_exception=True)
 def photo_upload(request):
     form = forms.PhotoForm(request.POST, request.FILES)
     if form.is_valid():
