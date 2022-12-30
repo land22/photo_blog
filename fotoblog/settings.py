@@ -134,3 +134,5 @@ AUTH_USER_MODEL = 'authentication.User'
 LOGIN_URL='login'
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR.joinpath('media/')
+#STATICFILES_DIRS = [BASE_DIR.joinpath('static/')] ----> ceci fonctionne aussi
+STATICFILES_DIRS = [BASE_DIR /'static/']
