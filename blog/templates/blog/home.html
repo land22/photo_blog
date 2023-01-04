@@ -1,19 +1,68 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block content %}
- <p>Vous êtes connecté</p>
-<h2>Photos</h2>
-    {% for photo in photos %}
-        <img src="{{ photo.image.url }}">
-        <p>{{ photo.caption }}</p>
-    {% endfor %}
 
-<h2>Blog</h2>
-<div>
-    {% for blog in blogs %}
-        <div>
-            <a href="{% url 'view_blog' blog.id %}"><h4>Billet : {{ blog.title}}</h4></a>
-            <img src="{{ blog.photo.image.url }}">
+<section class="xv-owl-slider default">
+	<div class="container">
+    	<div class="xv-owl-wrap">
+
+                <figure>
+                    <img src="{% static 'assets/demo-data/img4.jpg'%}" alt="" width="1200" height="570"/>
+                    <figcaption><h1><a href="#">Site de redaction des articles et de publication </a></h1>
+                    <span class="cat">des photos</span></figcaption>
+                </figure>
+
         </div>
-    {% endfor %}
-</div>
+    </div>
+</section>
+    <section class="most_visited">
+    	<header><h2>Les photos</h2></header>
+        <div class="row">
+            {% for photo in photos %}
+                <div class="col-xs-12 col-sm-4">
+                    <article>
+                        <figure>
+                            <img src="{{ photo.image.url }}" width="1200" height="570" alt=""/>
+                         </figure>
+                        <div class="article_content">
+                            <p>Description : {{ photo.caption }}</p>
+                        </div>
+                    </article>
+                </div><!--column-->
+            {% endfor %}
+        </div><!--row-->
+        <footer>
+        	<a class="viewAllPopular btn" href="#">Plus de photos</a>
+        </footer>
+    </section>
+
+    <section class="most_visited">
+    	<header><h2>Les articles</h2></header>
+        <div class="row">
+            {% for blog in blogs %}
+                <div class="col-xs-12 col-sm-4">
+                    <article>
+                        <figure>
+                            <img src="{{ blog.photo.image.url }}" width="1200" height="570" alt=""/>
+                         </figure>
+                        <header>
+                            <h3><a href="{% url 'view_blog' blog.id %}">Billet : {{ blog.title}} </a></h3>
+                            <time datetime="2015-01-26 08:30:45.687">26 jan, 2015</time>
+                        </header>
+                        <div class="article_content">
+                            <p>Proin ornare ultrices ipsumelo tempor tempus nullam, scels erisquer  vivamus sagittis felis.</p>
+                        </div>
+                        <footer>
+                            <a href="{% url 'view_blog' blog.id %}" class="readMore">Plus de détails</a>
+                        </footer>
+                    </article>
+                </div><!--column-->
+            {% endfor %}
+        </div><!--row-->
+        <footer>
+        	<a class="viewAllPopular btn" href="#">Plus d'articles</a>
+        </footer>
+    </section>
+
+</div><!--container-->
 {% endblock content %}
