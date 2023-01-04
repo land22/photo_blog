@@ -1,9 +1,19 @@
 {% extends 'base.html' %}
 {% block content %}
-    <h2>Télécharger plusieurs photos</h2>
-    <form method="post" enctype="multipart/form-data">
-        {{ formset.as_p }}
-        {% csrf_token %}
-        <button type="submit" >Publier</button>
-    </form>
+    <div class="container">
+            <div class="pageContentArea">
+                <main>
+                    <header>
+                        <h1>Télécharger plusieurs une photo</h1>
+                    </header>
+                    <div class="pageContent">
+                        <form method="post" enctype="multipart/form-data">
+                            {{ formset.as_p }}
+                            {% csrf_token %}
+                            <p class="text-center"><button type="submit" class="btn btn-default">Publier</button></p>
+                        </form>
+                     </div>
+                 </main><!--main content of current page-->
+              </div><!--pageContentArea-->
+       </div><!--container-->
 {% endblock content %}

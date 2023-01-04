@@ -1,8 +1,29 @@
 {% extends 'base.html' %}
 {% block content %}
-    <h2>{{ blog.title }}</h2>
-    <p><a href="{% url 'edit_blog' blog.id %}">Modifier le blog</a></p>
-    <img src="{{ blog.photo.image.url }}">
-    <p>{{ blog.photo.caption }}</p>
-    <p>{{ blog.content }}</p>
+<div class="container">
+	<div class="pageContentArea clearfix">
+        <main>
+            <article class="single-article clearfix">
+            	<figure class="text-center">
+                    <img src="{{ blog.photo.image.url }}" width="300" height="100" alt=""/>
+                    <p>{{ blog.photo.caption }}</p>
+                </figure>
+                <header>
+                	<h1>{{ blog.title }}</h1>
+                </header>
+
+                <div class="article-inner">
+                	<p> {{ blog.content }}.</p>
+                    {% if user.is_authenticated %}
+                    <p><a href="{% url 'edit_blog' blog.id %}" class="btn btn-default">Modifier le blog</a></p>
+                {% endif %}
+                </div>
+
+            </article>
+
+        </main><!--main content of current page-->
+
+    </div><!--pageContentArea-->
+
+</div><!--container-->
 {% endblock content %}
